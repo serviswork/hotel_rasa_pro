@@ -1,0 +1,9 @@
+version: "3.1"
+recipe: default.v1
+language: ru
+pipeline:
+  - name: SingleStepLLMCommandGenerator
+    llm:
+      model_group: gpt-4-direct
+policies:
+  - name: FlowPolicy

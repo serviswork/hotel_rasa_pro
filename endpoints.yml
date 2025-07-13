@@ -1,0 +1,8 @@
+model_groups:
+  - id: gpt-4-direct
+    models:
+      - provider: openai
+        model: gpt-4
+        timeout: 7
+        temperature: 0.0
+        api_key: ${OPENAI_API_KEY}

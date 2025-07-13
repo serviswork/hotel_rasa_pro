@@ -1,0 +1,38 @@
+version: "3.1"
+flows:
+  pattern_session_start:
+    description: Начало разговора при звонке в отель
+    name: pattern session start
+    nlu_trigger:
+      - intent: session_start
+    steps:
+      - action: utter_hotel_greeting
+
+  hotel_booking:
+    description: Бронирование номера в отеле
+    name: hotel booking
+    steps:
+      - collect: guest_name
+        utter: utter_ask_guest_name
+      - collect: check_in_date
+        utter: utter_ask_check_in
+      - collect: check_out_date
+        utter: utter_ask_check_out
+      - collect: room_type
+        utter: utter_ask_room_type
+      - action: action_create_booking
+      - action: utter_booking_confirmation
+
+  hotel_services:
+    description: Информация об услугах отеля
+    name: hotel services
+    steps:
+      - action: utter_hotel_services_info
+
+  pattern_session_end:
+    description: Завершение звонка
+    name: pattern session end
+    nlu_trigger:
+      - intent: session_end
+    steps:
+      - action: utter_hotel_goodbye

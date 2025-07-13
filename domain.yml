@@ -1,0 +1,64 @@
+version: "3.1"
+
+intents:
+  - session_start
+  - session_end
+
+slots:
+  guest_name:
+    type: text
+    mappings:
+      - type: from_llm
+  check_in_date:
+    type: text
+    mappings:
+      - type: from_llm
+  check_out_date:
+    type: text
+    mappings:
+      - type: from_llm
+  room_type:
+    type: text
+    mappings:
+      - type: from_llm
+  session_started_metadata:
+    type: any
+    mappings:
+      - type: custom
+
+responses:
+  utter_hotel_greeting:
+    - text: "Добро пожаловать в отель! Меня зовут Анна, я ваш голосовой помощник. Как дела?"
+      channel: "twilio_media_streams"
+
+  utter_ask_guest_name:
+    - text: "Как вас зовут?"
+      channel: "twilio_media_streams"
+
+  utter_ask_check_in:
+    - text: "На какую дату планируете заезд?"
+      channel: "twilio_media_streams"
+
+  utter_ask_check_out:
+    - text: "На какую дату планируете выезд?"
+      channel: "twilio_media_streams"
+
+  utter_ask_room_type:
+    - text: "Какой тип номера вас интересует: стандарт, люкс или президентский?"
+      channel: "twilio_media_streams"
+
+  utter_booking_confirmation:
+    - text: "Отлично! Бронирование на имя {{guest_name}} с {{check_in_date}} по {{check_out_date}} в номере {{room_type}} создано."
+      channel: "twilio_media_streams"
+
+  utter_hotel_services_info:
+    - text: "У нас есть ресторан, фитнес-зал и бассейн. Завтрак включён. Работаем 24/7."
+      channel: "twilio_media_streams"
+
+  utter_hotel_goodbye:
+    - text: "Спасибо за звонок, до свидания!"
+      channel: "twilio_media_streams"
+
+actions:
+  - action_session_start
+  - action_create_booking
