@@ -23,5 +23,7 @@ class ActionCreateBooking(Action):
         check_in = tracker.get_slot("check_in_date")
         check_out = tracker.get_slot("check_out_date")
         room_type = tracker.get_slot("room_type")
+        
+        # Здесь можно добавить интеграцию с системой бронирования отеля
         logger.info(f"Booking created: {guest_name}, {check_in}-{check_out}, {room_type}")
         return []

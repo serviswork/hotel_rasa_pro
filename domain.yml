@@ -21,10 +21,6 @@ slots:
     type: text
     mappings:
       - type: from_llm
-  session_started_metadata:
-    type: any
-    mappings:
-      - type: custom
 
 responses:
   utter_hotel_greeting:
@@ -39,8 +35,16 @@ responses:
     - text: "На какую дату планируете заезд?"
       channel: "twilio_media_streams"
 
+  utter_ask_check_in_date:
+    - text: "Пожалуйста, укажите дату заезда (например, 2024-08-01)."
+      channel: "twilio_media_streams"
+
   utter_ask_check_out:
     - text: "На какую дату планируете выезд?"
+      channel: "twilio_media_streams"
+
+  utter_ask_check_out_date:
+    - text: "Пожалуйста, укажите дату выезда (например, 2024-08-05)."
       channel: "twilio_media_streams"
 
   utter_ask_room_type:

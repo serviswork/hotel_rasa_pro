@@ -1,9 +1,13 @@
 version: "3.1"
 recipe: default.v1
 language: ru
+assistant_id: 20250713-205617-narrow-contingency
+
 pipeline:
-  - name: SingleStepLLMCommandGenerator
+  - name: CompactLLMCommandGenerator
     llm:
       model_group: gpt-4-direct
+    disable_embedding: true
+
 policies:
-  - name: FlowPolicy
+  - name: rasa.core.policies.flow_policy.FlowPolicy

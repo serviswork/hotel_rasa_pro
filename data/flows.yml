@@ -1,0 +1,23 @@
+version: "3.1"
+
+flows:
+  hotel_booking:
+    description: "Бронирование номера в отеле для гостей"
+    nlu_trigger:
+      - intent: session_start
+    steps:
+      - action: utter_hotel_greeting
+      - collect: guest_name
+        description: "Полное имя гостя"
+        utter: utter_ask_guest_name
+      - collect: check_in_date
+        description: "Дата заезда в формате YYYY-MM-DD"
+        utter: utter_ask_check_in_date
+      - collect: check_out_date
+        description: "Дата выезда в формате YYYY-MM-DD"
+        utter: utter_ask_check_out_date
+      - collect: room_type
+        description: "Тип номера: стандартный, люкс или семейный"
+        utter: utter_ask_room_type
+      - action: action_create_booking
+      - action: utter_booking_confirmation
